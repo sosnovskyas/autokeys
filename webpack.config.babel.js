@@ -11,7 +11,9 @@ export default {
     filename: "[name].bundle.js",
     chunkFilename: "[id].bundle.js"
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({
+    template: 'jade!./src/index.jade'
+  })],
   loaders: [
     {test: /\.js$/, loader: 'babel'},
     {test: /\.jade$/, loader: 'jade'}
