@@ -4,6 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const autoprefixer = require('autoprefixer');
 
 const pluginsProd = [
@@ -19,7 +21,8 @@ const pluginsProd = [
 const pluginsDev = [
   new HtmlWebpackPlugin({template: './src/index.jade'}),
   new webpack.HotModuleReplacementPlugin(),
-  new ExtractTextPlugin('style.css', {allChunks: true})
+  new ExtractTextPlugin('style.css', {allChunks: true}),
+  new CopyWebpackPlugin([{ from: './src/data.json', to: './' }])
 ];
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
