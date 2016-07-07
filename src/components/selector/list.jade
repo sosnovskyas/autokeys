@@ -25,10 +25,21 @@ else
         .key__name= item.name
         .key__description= item.desc
         .row
-          .col-xs-3
-          .col-xs-1
+          .col-xs-3 Стоимость чипа
+          .col-xs-1= item.costChip
+        .row
+          .col-xs-3 Программирование ключа
+          .col-xs-1= item.costPatch
+        .row
+          .col-xs-3 Заточка лезвия
+          .col-xs-1= item.costSharpening
+        .row.total
+          .col-xs-3 Заточка лезвия
+          .col-xs-1= item.costSharpening
 
-        .box= 'availability ' + item.availability
+
+
+.box= 'availability ' + item.availability
         .box= 'costChip ' + item.costChip
         .box= 'costPatch ' + item.costPatch
         .box= 'costSharpening ' + item.costSharpening
