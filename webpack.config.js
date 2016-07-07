@@ -24,7 +24,7 @@ const pluginsDev = [
   new ExtractTextPlugin('style.css', {allChunks: true}),
   new CopyWebpackPlugin([
     { from: './src/data.json', to: './' },
-    { from: './src/assets', to: './' }
+    { from: './src/assets', to: './assets' }
   ])
 ];
 
