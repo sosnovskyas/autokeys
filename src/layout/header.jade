@@ -1,17 +1,30 @@
 mixin header()
-  header.header.row
-    .col-xs-offset-3.col-xs-2.red
-      select.box.car-brand
-        option Выберите марку
-    .col-xs-2
-      select.box.car-model
-        option Выберите модель
-    .col-xs-2.red
-      select.box.car-year
-        option Выберите год
-    .col-xs-offset-3
+  header.header
+    .row
+      .col-xs-offset-3.col-xs-2
+        .box
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-brand
+              option Выберите марку
+      .col-xs-2
+        .box
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-model
+              option Выберите модель
+      .col-xs-2
+        .box
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-year
+              option Выберите год
+      .col-xs-offset-3
 
-  .row.header-find
-    .col-xs-12.center-xs
-      .box
-        img(src="" alt="найти")
+
+
+  .search
+    .row
+      .col-xs-12.center-xs
+        .box
+          img(src="/assets/img/search.png" alt="найти")
