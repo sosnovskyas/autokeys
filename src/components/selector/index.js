@@ -15,6 +15,9 @@ export default class Selector {
     this.year = year;
     this.list = list;
 
+    // empty list
+    this._listUpdate([]);
+
     this._loadData(dataUrl, data => {
       this.data = data;
       let brandList = [];
@@ -49,8 +52,8 @@ export default class Selector {
     });
   }
 
-  _updateList(items) {
-    console.log('_updateList', items);
+  _listUpdate(items) {
+    console.log('_listUpdate', items);
     this.list.innerHTML = listTemplate({
       items: items
     })
@@ -84,7 +87,7 @@ export default class Selector {
 
     keyList.map(item => keyItems.push(this.data.keys[item]));
 
-    this._updateList(keyItems);
+    this._listUpdate(keyItems);
   }
 
 }
