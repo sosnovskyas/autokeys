@@ -22,7 +22,10 @@ const pluginsDev = [
   new HtmlWebpackPlugin({template: './src/index.jade'}),
   new webpack.HotModuleReplacementPlugin(),
   new ExtractTextPlugin('style.css', {allChunks: true}),
-  new CopyWebpackPlugin([{ from: './src/data.json', to: './' }])
+  new CopyWebpackPlugin([
+    { from: './src/data.json', to: './' },
+    { from: './src/assets', to: './' }
+  ])
 ];
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
