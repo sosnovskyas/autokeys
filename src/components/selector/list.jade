@@ -20,9 +20,9 @@ else
     .row.key
       .col-xs-offset-1.col-xs-4
         .key__image-wrapper
-          img(src="/assets/goods/"+item.img alt="ключи").key__image
+          img(src="/assets/goods/" + item.img alt="ключи").key__image
       .col-xs-4
-        .key__name= item.name
+        .key__name= item.name + ' ' + item.id
         .key__description= item.desc
         .row
           .col-xs-3 Стоимость чипа
@@ -34,21 +34,18 @@ else
           .col-xs-3 Заточка лезвия
           .col-xs-1= item.costSharpening
         .row.total
-          .col-xs-3 Заточка лезвия
+          .col-xs-3 Итого
           .col-xs-1= item.costSharpening
-
-
-
-.box= 'availability ' + item.availability
-        .box= 'costChip ' + item.costChip
-        .box= 'costPatch ' + item.costPatch
-        .box= 'costSharpening ' + item.costSharpening
-        .box= 'desc ' + item.desc
-        .box= 'expressDelivery ' + item.expressDelivery
-        .box= 'id ' + item.id
-        .box= 'img ' + item.img
-        .box= 'name ' + item.name
-        .box= 'selfDelivery ' + item.selfDelivery
       .col-xs-2
-        .box
-          button заказать
+        .row
+          .col-xs-1 В наличии
+          .col-xs-1= item.availability ? 'Есть' : 'Нет'
+        .row
+          .col-xs-1 Самовывоз
+          .col-xs-1= item.selfDelivery + ' день'
+        .row
+          .col-xs-1 Курьером
+          .col-xs-1= item.expressDelivery + ' день'
+        .row
+          .col-xs-2
+            button Заказать
