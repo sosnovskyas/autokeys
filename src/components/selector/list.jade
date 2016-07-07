@@ -1,21 +1,33 @@
-if items
+if empty
   .row
-    .col-xs-offset-1.col-xs-4
+    .col-xs-offset-1.col-xs-4.key__empty
       .key__image-wrapper
-        img(alt="ключи").key__image
-    .col-xs-4
-      .box чтобы выпал нужный ключ
+        img(src="/assets/img/keys-empty.png" alt="ключи").key__image
+    .col-xs-3.key__empty
+      .key__empty-header Чтобы выпал нужный ключ
+      .key__empty-text Необходимо выбрать
+      .key__empty-text марку, модель и год выпуска
+      .key__empty-text вашего автомобиля
+
+    .col-xs-1
+      .key__empty-arrow-wrapper
+        img(src="/assets/img/keys-empty-arrow.png" alt="ключи").key__empty-arrow
     .col-xs-2
-      .box
-        button заказать
+    .col-xs-offset-1
+
 else
   each item in items
-    .row
+    .row.key
       .col-xs-offset-1.col-xs-4
-        .col-xs-offset-1.col-xs-4
-          .key__image-wrapper
-            img(alt="ключи").key__image
+        .key__image-wrapper
+          img(src="/assets/goods/"+item.img alt="ключи").key__image
       .col-xs-4
+        .key__name= item.name
+        .key__description= item.desc
+        .row
+          .col-xs-3
+          .col-xs-1
+
         .box= 'availability ' + item.availability
         .box= 'costChip ' + item.costChip
         .box= 'costPatch ' + item.costPatch

@@ -16,7 +16,7 @@ export default class Selector {
     this.list = list;
 
     // empty list
-    this._listUpdate([]);
+    this._listUpdate();
 
     this._loadData(dataUrl, data => {
       this.data = data;
@@ -54,8 +54,10 @@ export default class Selector {
 
   _listUpdate(items) {
     console.log('_listUpdate', items);
+    const empty = !items;
     this.list.innerHTML = listTemplate({
-      items: items
+      items: items,
+      empty: empty
     })
   }
 
