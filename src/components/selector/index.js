@@ -58,13 +58,13 @@ export default class Selector {
 
   _onBrandChange(item) {
     console.log('_onBrandChange', item);
-    this._updateSelect(this.year, [], 'выберите год');
+    this._updateSelect(this.year, [], 'Выберите год');
     let modelList = [];
 
     for (let model in this.data.cars[item]) {
       modelList.push(model);
     }
-    this._updateSelect(this.model, modelList, 'выберите модель');
+    this._updateSelect(this.model, modelList, 'Выберите модель');
   }
 
   _onModelChange(item) {
@@ -73,7 +73,7 @@ export default class Selector {
     for (let year in this.data.cars[this.brand.value][item]) {
       yearList.push(year);
     }
-    this._updateSelect(this.year, yearList, 'выберите год');
+    this._updateSelect(this.year, yearList, 'Выберите год');
   }
 
   _onYearChange(item) {
