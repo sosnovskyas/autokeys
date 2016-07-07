@@ -16,7 +16,29 @@ export default class Selector {
     this.list = list;
 
     // empty list
-    this._listUpdate();
+    this._listUpdate([
+      {
+        "id": "000002",
+        "img": "2.jpg",
+        "desc": "description 2",
+        "name": "name 2",
+        "costChip": "123",
+        "costPatch": "321",
+        "costSharpening": "987",
+        "availability": true,
+        "expressDelivery": "1",
+        "selfDelivery": "1"
+      }, {
+        "img": "2.jpg",
+        "desc": "description 4",
+        "name": "name 4",
+        "costChip": "123",
+        "costPatch": "321",
+        "costSharpening": "987",
+        "availability": false,
+        "expressDelivery": "1",
+        "selfDelivery": "1"
+      }]);
 
     this._loadData(dataUrl, data => {
       this.data = data;
@@ -53,7 +75,7 @@ export default class Selector {
   }
 
   _listUpdate(items) {
-    console.log('_listUpdate', items);
+    console.log('_listUpdate', JSON.stringify(items));
     const empty = !items;
     this.list.innerHTML = listTemplate({
       items: items,
