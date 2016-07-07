@@ -17,35 +17,47 @@ if empty
 
 else
   each item in items
-    .row.key
+    .row.key.common-width
       .col-xs-offset-1.col-xs-4
-        .key__image-wrapper
-          img(src="/assets/goods/" + item.img alt="ключи").key__image
-      .col-xs-4
-        .key__name= item.name + ' ' + item.id
-        .key__description= item.desc
-        .row
-          .col-xs-3 Стоимость чипа
-          .col-xs-1= item.costChip
-        .row
-          .col-xs-3 Программирование ключа
-          .col-xs-1= item.costPatch
-        .row
-          .col-xs-3 Заточка лезвия
-          .col-xs-1= item.costSharpening
-        .row.total
-          .col-xs-3 Итого
-          .col-xs-1= item.costSharpening
-      .col-xs-2
-        .row
-          .col-xs-1 В наличии
-          .col-xs-1= item.availability ? 'Есть' : 'Нет'
-        .row
-          .col-xs-1 Самовывоз
-          .col-xs-1= item.selfDelivery + ' день'
-        .row
-          .col-xs-1 Курьером
-          .col-xs-1= item.expressDelivery + ' день'
-        .row
-          .col-xs-2
-            button Заказать
+        .box
+          .key__image-wrapper
+            img(src="/assets/goods/" + item.img alt="ключи").key__image
+
+      .col-xs-6
+        .box
+          .key__name= item.name + ' ' + item.id
+          .key__description= item.desc
+
+          .row
+            .col-xs-8
+              .box
+                .row
+                  .col-xs-9.key__caption Стоимость чипа
+                  .col-xs-3.key__value= item.costChip + ' р'
+
+                .row
+                  .col-xs-9.key__caption Программирование ключа
+                  .col-xs-3.key__value= item.costPatch + ' р'
+
+                .row
+                  .col-xs-9.key__caption Заточка лезвия
+                  .col-xs-3.key__value= item.costSharpening + ' р'
+
+                .row.key__total
+                  .col-xs-9.key__caption Итого
+                  .col-xs-3.key__value= item.costSharpening + ' р'
+
+            .col-xs-4
+              .box
+                .row
+                  .col-xs-6.key__caption В наличии
+                  .col-xs-6.key__value= item.availability ? 'Есть' : 'Нет'
+                .row
+                  .col-xs-6.key__caption Самовывоз
+                  .col-xs-6.key__value= item.selfDelivery + ' день'
+                .row
+                  .col-xs-6.key__caption Курьером
+                  .col-xs-6.key__value= item.expressDelivery + ' день'
+                .row
+                  .col-xs-12
+                    button Заказать
