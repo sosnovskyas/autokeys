@@ -1,8 +1,8 @@
 if items
   .row
     .col-xs-offset-1.col-xs-4
-      .box
-        img(src="" alt="ключиs")
+      .key__image-wrapper
+        img(alt="ключи").key__image
     .col-xs-4
       .box чтобы выпал нужный ключ
     .col-xs-2
@@ -12,8 +12,9 @@ else
   each item in items
     .row
       .col-xs-offset-1.col-xs-4
-        .box
-          img(src="" alt="ключиs")
+        .col-xs-offset-1.col-xs-4
+          .key__image-wrapper
+            img(alt="ключи").key__image
       .col-xs-4
         .box= 'availability ' + item.availability
         .box= 'costChip ' + item.costChip
