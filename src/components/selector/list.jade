@@ -42,7 +42,7 @@ else
               .col-xs-9.key__caption Заточка лезвия
               .col-xs-3.key__value= item.costSharpening + ' р'
 
-            .row.key__price-total
+            .row.key__result-row.key__price-total
               .col-xs-9.key__caption Итого
               .col-xs-3.key__value= +item.costSharpening + +item.costPatch + +item.costChip + ' р'
 
@@ -56,6 +56,6 @@ else
             .row
               .col-xs-6.key__caption Курьером
               .col-xs-6.key__value= item.expressDelivery + ' день'
-            .row
+            .row.key__result-row
               .col-xs-12
-                button Заказать
+                button.key__buy(data-id=item.id) Заказать
