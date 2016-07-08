@@ -54,7 +54,12 @@ export default class Selector {
       year.addEventListener('change', event => this._onYearChange(event.target.value));
       list.addEventListener('click', event => {
         if (event.target.closest('button.key__buy')) {
+          event.preventDefault();
           this._onBuy(event.target.dataset.id)
+        }
+        if (event.target.closest('button.buy__order')) {
+          event.preventDefault();
+          this._onOrder()
         }
       })
     });
@@ -123,12 +128,40 @@ export default class Selector {
 
   _onBuy(id) {
     console.log('_onBuy', id);
-    this.list.innerHTML = listTemplate({buy: true})
+
+    this.list.innerHTML = listTemplate({
+      buy: true,
+      id: id
+    })
   }
 
   _onOrder() {
+    console.log('_onOrder');
+
+    const name = this.list.querySelector('.buy__name').value;
+    const phone = this.list.querySelector('.buy__phone').value;
+    const comment = this.list.querySelector('.buy__comment').value;
+    const id = this.list.querySelector('.buy__id').value;
+    console.log(name, phone, comment, id);
+
+    fetch('/buy', {
+      method: 'POST',
+      body: {
+        id: id,
+        name: name,
+        phone: phone,
+        comment: comment
+      }
+    })
+      .then(response=> {
+        if (response.status == 200) {
+          return response.json()
+        } else {
+          throw new Error('ошибка получения данных')
+        }
+      })
+      .then(data=> console.log(data));
 
   }
-
 }
 
