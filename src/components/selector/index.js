@@ -15,6 +15,31 @@ export default class Selector {
     this.year = year;
     this.list = list;
 
+    // empty list
+    this._listUpdate([
+      {
+        "id": "000002",
+        "img": "2.jpg",
+        "desc": "description 2",
+        "name": "name 2",
+        "costChip": "123",
+        "costPatch": "321",
+        "costSharpening": "987",
+        "availability": true,
+        "expressDelivery": "1",
+        "selfDelivery": "1"
+      }, {
+        "img": "2.jpg",
+        "desc": "description 4",
+        "name": "name 4",
+        "costChip": "123",
+        "costPatch": "321",
+        "costSharpening": "987",
+        "availability": false,
+        "expressDelivery": "1",
+        "selfDelivery": "1"
+      }]);
+
     this._loadData(dataUrl, data => {
       this.data = data;
       let brandList = [];
@@ -27,6 +52,16 @@ export default class Selector {
       brand.addEventListener('change', event => this._onBrandChange(event.target.value));
       model.addEventListener('change', event => this._onModelChange(event.target.value));
       year.addEventListener('change', event => this._onYearChange(event.target.value));
+      list.addEventListener('click', event => {
+        if (event.target.closest('button.key__buy')) {
+          event.preventDefault();
+          this._onBuy(event.target.dataset.id)
+        }
+        if (event.target.closest('button.buy__order')) {
+          event.preventDefault();
+          this._onOrder()
+        }
+      })
     });
   }
 
@@ -49,10 +84,14 @@ export default class Selector {
     });
   }
 
-  _updateList(items) {
-    console.log('_updateList', items);
+  _listUpdate(items) {
+    console.log('_listUpdate', JSON.stringify(items));
+
+    const empty = !items;
+
     this.list.innerHTML = listTemplate({
-      items: items
+      items: items,
+      empty: empty
     })
   }
 
@@ -84,8 +123,45 @@ export default class Selector {
 
     keyList.map(item => keyItems.push(this.data.keys[item]));
 
-    this._updateList(keyItems);
+    this._listUpdate(keyItems);
   }
 
+  _onBuy(id) {
+    console.log('_onBuy', id);
+
+    this.list.innerHTML = listTemplate({
+      buy: true,
+      id: id
+    })
+  }
+
+  _onOrder() {
+    console.log('_onOrder');
+
+    const name = this.list.querySelector('.buy__name').value;
+    const phone = this.list.querySelector('.buy__phone').value;
+    const comment = this.list.querySelector('.buy__comment').value;
+    const id = this.list.querySelector('.buy__id').value;
+    console.log(name, phone, comment, id);
+
+    fetch('/buy', {
+      method: 'POST',
+      body: {
+        id: id,
+        name: name,
+        phone: phone,
+        comment: comment
+      }
+    })
+      .then(response=> {
+        if (response.status == 200) {
+          return response.json()
+        } else {
+          throw new Error('ошибка получения данных')
+        }
+      })
+      .then(data=> console.log(data));
+
+  }
 }
 
