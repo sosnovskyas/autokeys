@@ -16,7 +16,7 @@ export default class Selector {
     this.list = list;
 
     // empty list
-    this._listUpdate([
+    this._listUpdate(/*[
       {
         "id": "000002",
         "img": "2.jpg",
@@ -38,7 +38,7 @@ export default class Selector {
         "availability": false,
         "expressDelivery": "1",
         "selfDelivery": "1"
-      }]);
+      }]*/);
 
     this._loadData(dataUrl, data => {
       this.data = data;
