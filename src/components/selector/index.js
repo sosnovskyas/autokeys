@@ -76,7 +76,9 @@ export default class Selector {
 
   _listUpdate(items) {
     console.log('_listUpdate', JSON.stringify(items));
+
     const empty = !items;
+
     this.list.innerHTML = listTemplate({
       items: items,
       empty: empty
