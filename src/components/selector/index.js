@@ -16,7 +16,7 @@ export default class Selector {
     this.list = list;
 
     // empty list
-    this._listUpdate(/*[
+    this._listUpdate([
       {
         "id": "000002",
         "img": "2.jpg",
@@ -38,7 +38,7 @@ export default class Selector {
         "availability": false,
         "expressDelivery": "1",
         "selfDelivery": "1"
-      }]*/);
+      }]);
 
     this._loadData(dataUrl, data => {
       this.data = data;
@@ -52,6 +52,11 @@ export default class Selector {
       brand.addEventListener('change', event => this._onBrandChange(event.target.value));
       model.addEventListener('change', event => this._onModelChange(event.target.value));
       year.addEventListener('change', event => this._onYearChange(event.target.value));
+      list.addEventListener('click', event => {
+        if (event.target.closest('button.key__buy')) {
+          this._onBuy(event.target.dataset.id)
+        }
+      })
     });
   }
 
@@ -114,6 +119,15 @@ export default class Selector {
     keyList.map(item => keyItems.push(this.data.keys[item]));
 
     this._listUpdate(keyItems);
+  }
+
+  _onBuy(id) {
+    console.log('_onBuy', id);
+    this.list.innerHTML = listTemplate({buy: true})
+  }
+
+  _onOrder() {
+
   }
 
 }
