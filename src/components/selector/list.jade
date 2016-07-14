@@ -1,20 +1,24 @@
 if buy
-  form(name="order").buy.row.bottom-xs
-    .col-xs-offset-3.col-xs-6
-      .buy__header Укажите ваши данные и мы свяжемся с вами
-      .row
-        .col-xs-8
-          input(name="name" type="text" placeholder="Ваше имя").buy__name
-        .col-xs-4
-          input(name="phone" type="text" placeholder="Ваш телефон").buy__phone
-      .row
-        .col-xs-12
-          textarea(name="comment" placeholder="Ваш комментарий").buy__comment
+  form(name="order").buy
+    .row
+      .col-xs-offset-3.col-xs-6
+        .buy__header Укажите ваши данные и мы свяжемся с вами
+    .row.bottom-xs
+      .col-xs-offset-3.col-xs-6
+        .row
+          .col-xs-8
+            input(name="name" type="text" placeholder="Ваше имя").buy__name
+          .col-xs-4
+            input(name="phone" type="text" placeholder="Ваш телефон").buy__phone
+        .row
+          .col-xs-12
+            textarea(name="comment" placeholder="Ваш комментарий").buy__comment
 
-    .col-xs-2
-      .row
-        input(name="id" hidden value=id).buy__id
-        button.buy__order Заказать
+      .col-xs-2
+        .row.bottom-xs
+          .col-xs-12
+            input(name="id" hidden value=id).buy__id
+            button.buy__order Заказать
 
 else if empty
   .row
