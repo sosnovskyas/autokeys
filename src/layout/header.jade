@@ -1,0 +1,28 @@
+mixin header()
+  header.header
+    .row.common-width
+      .col-xs-offset-3.col-xs-2
+        .box.start-xs
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-brand
+              option Выберите марку
+      .col-xs-2
+        .box.center-xs
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-model
+              option Выберите модель
+      .col-xs-2
+        .box.end-xs
+          .dropdown
+            a.dropdown__button
+            select.dropdown__select.car-year
+              option Выберите год
+      .col-xs-offset-3
+
+  .search
+    .row.common-width
+      .col-xs-12.center-xs
+        .box
+          img(src="/assets/img/search.png" alt="найти")

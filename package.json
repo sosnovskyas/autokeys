@@ -4,7 +4,8 @@
   "description": "Autokeys SPA",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,30 @@
   "bugs": {
     "url": "https://github.com/sosnovskyas/autokeys/issues"
   },
-  "homepage": "https://github.com/sosnovskyas/autokeys#readme"
+  "homepage": "https://github.com/sosnovskyas/autokeys#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "flexboxgrid": "^6.3.0",
+    "html-webpack-plugin": "^2.22.0",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.8.0",
+    "normalize.css": "^4.2.0",
+    "postcss-loader": "^0.9.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
 }
