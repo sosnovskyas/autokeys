@@ -16,12 +16,12 @@ export default class Selector {
     this.list = list;
 
     // empty list
-    this._listUpdate(/*[
-      {
-        "id": "000002",
-        "img": "2.jpg",
-        "desc": "description 2",
-        "name": "name 2",
+    this._listUpdate(
+      /*[{
+        "id": "002",
+        "img": "002.jpg",
+        "desc": "Подробное описание ключа номер два",
+        "name": "Ключ номер два",
         "costChip": "123",
         "costPatch": "321",
         "costSharpening": "987",
@@ -29,16 +29,18 @@ export default class Selector {
         "expressDelivery": "1",
         "selfDelivery": "1"
       }, {
-        "img": "2.jpg",
-        "desc": "description 4",
-        "name": "name 4",
+        "id": "003",
+        "img": "003.jpg",
+        "desc": "Подробное описание ключа номер три",
+        "name": "Ключ номер три",
         "costChip": "123",
         "costPatch": "321",
         "costSharpening": "987",
-        "availability": false,
+        "availability": true,
         "expressDelivery": "1",
         "selfDelivery": "1"
-      }]*/);
+      }]*/
+    );
 
     this._loadData(dataUrl, data => {
       this.data = data;
