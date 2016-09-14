@@ -18,28 +18,28 @@ export default class Selector {
     // empty list
     this._listUpdate(
       /*[{
-        "id": "002",
-        "img": "002.jpg",
-        "desc": "Подробное описание ключа номер два",
-        "name": "Ключ номер два",
-        "costChip": "123",
-        "costPatch": "321",
-        "costSharpening": "987",
-        "availability": true,
-        "expressDelivery": "1",
-        "selfDelivery": "1"
-      }, {
-        "id": "003",
-        "img": "003.jpg",
-        "desc": "Подробное описание ключа номер три",
-        "name": "Ключ номер три",
-        "costChip": "123",
-        "costPatch": "321",
-        "costSharpening": "987",
-        "availability": true,
-        "expressDelivery": "1",
-        "selfDelivery": "1"
-      }]*/
+       "id": "002",
+       "img": "002.jpg",
+       "desc": "Подробное описание ключа номер два",
+       "name": "Ключ номер два",
+       "costChip": "123",
+       "costPatch": "321",
+       "costSharpening": "987",
+       "availability": true,
+       "expressDelivery": "1",
+       "selfDelivery": "1"
+       }, {
+       "id": "003",
+       "img": "003.jpg",
+       "desc": "Подробное описание ключа номер три",
+       "name": "Ключ номер три",
+       "costChip": "123",
+       "costPatch": "321",
+       "costSharpening": "987",
+       "availability": true,
+       "expressDelivery": "1",
+       "selfDelivery": "1"
+       }]*/
     );
 
     this._loadData(dataUrl, data => {
@@ -145,25 +145,57 @@ export default class Selector {
     const comment = this.list.querySelector('.buy__comment').value;
     const id = this.list.querySelector('.buy__id').value;
     console.log(name, phone, comment, id);
+    /*
+     fetch('/buy.php', {
+     method: 'POST',
+     body: {
+     id: id,
+     name: name,
+     phone: phone,
+     comment: comment,
+     qwe: 'qwe'
+     }
+     })
+     .then(response=> {
+     if (response.status == 200) {
+     console.log('response', response);
+     return response
+     } else {
+     throw new Error('ошибка получения данных')
+     }
+     })
+     .then(data=> console.log(data))
+     .catch((error) => {
+     console.error(error.message);
+     });
 
-    fetch('/buy', {
-      method: 'POST',
-      body: {
-        id: id,
-        name: name,
-        phone: phone,
-        comment: comment
+     */
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'buy.php');
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.send(`name=${name}&id=${id}&phone=${phone}&comment=${comment}`);
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState != 4) return;
+
+      // по окончании запроса доступны:
+      // status, statusText
+      // responseText, responseXML (при content-type: text/xml)
+
+      if (this.status != 200) {
+        // обработать ошибку
+        alert('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
+        return;
+      } else {
+        console.log('status', this.status, 'request', this.responseText)
       }
-    })
-      .then(response=> {
-        if (response.status == 200) {
-          return response.json()
-        } else {
-          throw new Error('ошибка получения данных')
-        }
-      })
-      .then(data=> console.log(data));
 
+      // получить результат из this.responseText или this.responseXML
+    }
   }
 }
 
