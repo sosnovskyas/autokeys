@@ -10,6 +10,7 @@ export default class Selector {
     year,
     list
   }) {
+    this.dataUrl = dataUrl;
     this.brand = brand;
     this.model = model;
     this.year = year;
@@ -41,20 +42,27 @@ export default class Selector {
        "selfDelivery": "1"
        }]*/
     );
+    this._init();
 
-    this._loadData(dataUrl, data => {
+  }
+  _getBrandlist() {
+    let brandList = [];
+
+    for (let item in this.data.cars) {
+      brandList.push(item);
+    }
+    return brandList;
+  }
+
+  _init() {
+    this._loadData(this.dataUrl, data => {
       this.data = data;
-      let brandList = [];
 
-      for (let item in this.data.cars) {
-        brandList.push(item);
-      }
-
-      this._updateSelect(brand, brandList, 'Выберите марку');
-      brand.addEventListener('change', event => this._onBrandChange(event.target.value));
-      model.addEventListener('change', event => this._onModelChange(event.target.value));
-      year.addEventListener('change', event => this._onYearChange(event.target.value));
-      list.addEventListener('click', event => {
+      this._updateSelect(this.brand, this._getBrandlist(), 'Выберите марку');
+      this.brand.addEventListener('change', event => this._onBrandChange(event.target.value));
+      this.model.addEventListener('change', event => this._onModelChange(event.target.value));
+      this.year.addEventListener('change', event => this._onYearChange(event.target.value));
+      this.list.addEventListener('click', event => {
         if (event.target.closest('button.key__buy')) {
           event.preventDefault();
           this._onBuy(event.target.dataset.id)
@@ -179,7 +187,7 @@ export default class Selector {
 
     xhr.send(`name=${name}&id=${id}&phone=${phone}&comment=${comment}`);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange =  () => {
       if (this.readyState != 4) return;
 
       // по окончании запроса доступны:
@@ -191,11 +199,18 @@ export default class Selector {
         alert('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
         return;
       } else {
-        console.log('status', this.status, 'request', this.responseText)
+        console.log('status', this.status, 'request', this.responseText);
+        alert('УСПЕХ');
       }
 
       // получить результат из this.responseText или this.responseXML
-    }
+    };
+
+    this._listUpdate();
+    this._updateSelect(this.brand, this._getBrandlist(), 'Выберите марку');
+    this._updateSelect(this.model, [], 'Выберите модель');
+    this._updateSelect(this.year, [], 'Выберите год');
+
   }
 }
 
